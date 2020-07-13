@@ -1,22 +1,26 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes,Route} from 'react-router-dom';
 import Home from './Components/Home';
 import About from './Components/About';
 import Product from './Components/Product';
 import ProductItems from './Components/ProductItems';
 import Navbar from './Components/Navbar';
+
+function Notfound(){
+    return <h1>Not Found bru</h1>
+  }
 function RouteConfig(){
     return(
         <div>
             <Router>
                 <Navbar></Navbar>
-                <Switch>
-                    <Route exact path="/" component={Home}></Route>
-                    <Route path="/about" component={About}></Route>
-                    <Route exact path="/product" component={Product}></Route>
-                    <Route path="/product/:id" component={ProductItems}></Route>
-                    <Route path="*" component={()=><h2>404 Not Found</h2>}></Route>
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<Home/>} />
+                    <Route path="about" element={<About/>} />
+                    <Route path="product" element={<Product/>}></Route>
+                    <Route path="/product/:id" element={<ProductItems/>}></Route>
+                    <Route path="*" element={<Notfound/>}></Route>
+                </Routes>
             </Router>
         </div>
     )
